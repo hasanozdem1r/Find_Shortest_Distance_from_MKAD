@@ -1,5 +1,6 @@
+#contains the application logic.
 from flask import Flask, render_template
-import yandex_geocoder
+
 
 app = Flask(__name__)
 @app.route('/')
