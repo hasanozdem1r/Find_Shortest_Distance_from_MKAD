@@ -5,6 +5,12 @@ home_page = Blueprint('dir_home', __name__,
                       static_folder='static')
 
 
-@home_page.route('/')
+@home_page.route('/',methods=["GET","POST"])
 def home_page_function():
-    return render_template("home_page/home_page.html")
+    try:
+        if request.method=="GET":
+            return render_template("home_page.html")
+        elif request.method=="POST":
+            return request.form["address"]
+    except TemplateNotFound:
+        abort(404)
