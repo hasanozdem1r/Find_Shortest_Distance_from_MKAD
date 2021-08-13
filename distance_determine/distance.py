@@ -3,7 +3,7 @@ class Distance:
     def __init__(self):
         pass
 
-    def find_distance_haversine(self, origin, destination):
+    def find_distance_haversine(self, origin:tuple, destination:tuple):
         """
         find_distance_haversine function use Haversine formula to determine distance between 2 geolocation.
         The haversine formula determines the great-circle distance between two points on a sphere given their longitudes and latitudes.

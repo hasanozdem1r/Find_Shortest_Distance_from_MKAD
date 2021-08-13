@@ -1,19 +1,21 @@
+from api.__init__ import *
+
 class YandexGeolocationApi:
 
-    def __init__(self, geolocator_api_key=""):
+    def __init__(self, geolocator_api_key:str=""):
         self._geolocator_api_key = geolocator_api_key
 
 
 
-    def search_by_address(self,address):
+    def search_by_address(self,address:str):
         """
         This method via Yandex Geolocation API find the geolocation of given address in JSON format
         :param address: <str> address entered by user
         :return:
         """
-        import requests,json
+
         request_str="https://geocode-maps.yandex.ru/1.x/?apikey=%s&geocode=%s&format=json" %(self._geolocator_api_key,address)
-        request=requests.get(request_str)
+        request=get(request_str)
         if (request.status_code==200):
             #temporary code part
             with open("get_result.json","a") as file:
