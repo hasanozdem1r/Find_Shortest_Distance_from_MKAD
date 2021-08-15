@@ -1,4 +1,4 @@
-from dir_haversine_distance._init__ import *
+from dir_distance._init__ import *
 
 class Distance:
 
@@ -13,6 +13,7 @@ class Distance:
         :param destination: <tuple:(latitude,longitude)> arrival point.
         :return: distance <float> distance between origin and destination as KM
         """
+
         # Earth radius in kilometers. A straight line from the centre to the circumference of a circle or sphere.
         RADIUS : float = 6372.8
 
@@ -35,7 +36,12 @@ class Distance:
         return distance
 
     def find_nearest_point_mkad(self,origin_address: tuple) -> list:
-        distance_obj = Distance()
+        """
+        This function find nearest point to Moscow Ring Road(МКАД) from given address.
+        :param origin_address: address given by user
+        :return: [given address's geolocation, nearest point from MKAD's geolocation, distance between points as KM]
+        """
+        distance_obj : Distance = Distance()
         nearest_destination: list = []
         mkad_km: list = [
             [1, 37.842762, 55.774558],
@@ -148,16 +154,18 @@ class Distance:
             [108, 37.841576, 55.785017]
         ]
         # find_distance_haversine(origin_address,first_geolocation_from_list)
-        distance_min = distance_obj.find_distance_haversine(origin_address, tuple(mkad_km[0][2:0:-1]))
+        distance_km : float= distance_obj.find_distance_haversine(origin_address, tuple(mkad_km[0][2:0:-1]))
         for each_km in mkad_km:
-            distance_current = distance_obj.find_distance_haversine(origin_address, tuple(each_km[2:0:-1]))
-            if (distance_min > distance_current):
-                distance_min = distance_current
+            distance_current :float = distance_obj.find_distance_haversine(origin_address, tuple(each_km[2:0:-1]))
+            if (distance_km > distance_current):
+                distance_km = distance_current
                 nearest_destination.clear()
                 nearest_destination.append(each_km)
-        return [nearest_destination[0][1],nearest_destination[0][2],distance_min] # -> return [latitude,longitude,distance]
+        # return [given address geolocation, nearest address geolocation,distance_as_km]
+        return [origin_address[0],origin_address[1],nearest_destination[0][1],nearest_destination[0][2],distance_km]
 
 if (__name__=="__main__"):
     distance_obj=Distance()
     # Istanbul -> 41.034768859043716, 28.954126450754607 Moscow -> 55.77075241893481, 37.56248403199888
     print(distance_obj.find_nearest_point_mkad((41.034768859043716, 28.954126450754607)))
+    print(distance_obj.find_distance_haversine(('41.011218', '28.978178'),(55.77075241893481, 37.56248403199888)))
