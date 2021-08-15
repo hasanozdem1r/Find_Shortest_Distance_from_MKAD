@@ -4,7 +4,11 @@ from dir_distance.distance import Distance
 home_page = Blueprint('dir_home', __name__, template_folder='templates', static_folder='static')
 
 @home_page.route('/',methods=["GET","POST"])
-def home_page_function():
+def home_page_function() -> str:
+    """
+    home_home_page_function regarding to HTTP request will return html file or log shortest distance
+    :return: <str> logging or html
+    """
     try:
         if request.method=="GET":
             return render_template("home_page.html")
@@ -24,5 +28,6 @@ def home_page_function():
             logging.info(str(result))
             return render_template("home_page.html")
 
+    # if home_page.html is not find in given address this code will be executed
     except TemplateNotFound:
         abort(404)

@@ -1,7 +1,7 @@
 from dir_distance._init__ import *
-
 class Distance:
 
+    # class constructor
     def __init__(self) -> None:
         pass
 
@@ -33,6 +33,7 @@ class Distance:
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
         #distance between origin and destination as kilometers
         distance = RADIUS * c  # Great Circle Arc Length(distance)
+        # via Haversine formula found distance between 2 locations and returned as KM
         return distance
 
     def find_nearest_point_mkad(self,origin_address: tuple) -> list:
@@ -41,8 +42,12 @@ class Distance:
         :param origin_address: address given by user
         :return: [given address's geolocation, nearest point from MKAD's geolocation, distance between points as KM]
         """
+
+        # created Distance object to access find_distance_haversine method
         distance_obj : Distance = Distance()
+        # created null list to keep result inside
         nearest_destination: list = []
+        # each_km of Moscow Ring Road
         mkad_km: list = [
             [1, 37.842762, 55.774558],
             [2, 37.842789, 55.76522],
@@ -153,19 +158,28 @@ class Distance:
             [107, 37.840965, 55.793991],
             [108, 37.841576, 55.785017]
         ]
+
+        # FIND NEAREST POINT OF MKAD
         # find_distance_haversine(origin_address,first_geolocation_from_list)
+        # assign first element of mkad_km list and given address distance as initial distance
         distance_km : float= distance_obj.find_distance_haversine(origin_address, tuple(mkad_km[0][2:0:-1]))
+        # check distance between each_km's geolocation and given_address' geolocation and find nearest one
         for each_km in mkad_km:
             distance_current :float = distance_obj.find_distance_haversine(origin_address, tuple(each_km[2:0:-1]))
             if (distance_km > distance_current):
                 distance_km = distance_current
                 nearest_destination.clear()
                 nearest_destination.append(each_km)
-        # return [given address geolocation, nearest address geolocation,distance_as_km]
-        return [origin_address[0],origin_address[1],nearest_destination[0][1],nearest_destination[0][2],distance_km]
 
+       # nearest_destination -> [origin_latitude, origin_langitude, nearest_latitude, nearest_longitude, distance_between_origin_nearest ]
+        nearest_destination=[origin_address[0],origin_address[1],nearest_destination[0][1],nearest_destination[0][2],distance_km]
+        return nearest_destination # list
+
+# here can be used while you test your code.
+# if you call this class from another file this part will not be executed
 if (__name__=="__main__"):
     distance_obj=Distance()
     # Istanbul -> 41.034768859043716, 28.954126450754607 Moscow -> 55.77075241893481, 37.56248403199888
     print(distance_obj.find_nearest_point_mkad((41.034768859043716, 28.954126450754607)))
-    print(distance_obj.find_distance_haversine(('41.011218', '28.978178'),(55.77075241893481, 37.56248403199888)))
+    print(distance_obj.find_distance_haversine((41.011218, 28.978178),(55.77075241893481, 37.56248403199888)))
+

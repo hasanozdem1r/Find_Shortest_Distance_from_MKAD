@@ -1,2 +1,10 @@
 INFO:root:Origin-->[41.011218, 28.978178] Destination-->[37.516108, 55.594728] Distance(KM)-->[1737.6415340974795]
-INFO:werkzeug:127.0.0.1 - - [15/Aug/2021 19:39:14] "[37mPOST / HTTP/1.1[0m" 200 -
+INFO:werkzeug:127.0.0.1 - - [15/Aug/2021 23:42:44] "[37mPOST / HTTP/1.1[0m" 200 -
+INFO:root:Origin-->[39.749891, 37.015746] Destination-->[37.668911, 55.571999] Distance(KM)-->[1760.4952586044587]
+INFO:werkzeug:127.0.0.1 - - [15/Aug/2021 23:42:49] "[37mPOST / HTTP/1.1[0m" 200 -
+INFO:root:Origin-->[39.920763, 32.854049] Destination-->[37.60107, 55.575816] Distance(KM)-->[1776.0379648356338]
+INFO:werkzeug:127.0.0.1 - - [15/Aug/2021 23:42:52] "[37mPOST / HTTP/1.1[0m" 200 -
+INFO:root:Origin-->[48.856663, 2.351556] Destination-->[37.369188, 55.75435] Distance(KM)-->[2471.472711018819]
+INFO:werkzeug:127.0.0.1 - - [15/Aug/2021 23:42:55] "[37mPOST / HTTP/1.1[0m" 200 -
+INFO:root:Origin-->[55.75322, 37.622513] Destination-->[37.841828, 55.747399] Distance(KM)-->[13.743984988551215]
+INFO:werkzeug:127.0.0.1 - - [15/Aug/2021 23:43:09] "[37mPOST / HTTP/1.1[0m" 200 -
