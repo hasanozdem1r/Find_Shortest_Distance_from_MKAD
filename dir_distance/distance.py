@@ -26,14 +26,16 @@ class Distance:
         #latitude,longitude distance between two addresses
         distance_lat :float = radians(lat_destination - lat_origin)
         distance_lon :float= radians(lon_destination - lon_origin)
-        #to be done
+        # Haversine formula
         a = sin(distance_lat / 2) ** 2 + cos(radians(lat_origin)) \
             * cos(radians(lat_destination)) * sin(distance_lon / 2) ** 2
-        #to be done
         c = 2 * atan2(sqrt(a), sqrt(1 - a))
+
         #distance between origin and destination as kilometers
         distance = RADIUS * c  # Great Circle Arc Length(distance)
+
         # via Haversine formula found distance between 2 locations and returned as KM
+        # return format distanca as KM : float
         return distance
 
     def find_nearest_point_mkad(self,origin_address: tuple) -> list:
@@ -45,8 +47,10 @@ class Distance:
 
         # created Distance object to access find_distance_haversine method
         distance_obj : Distance = Distance()
+
         # created null list to keep result inside
         nearest_destination: list = []
+
         # each_km of Moscow Ring Road
         mkad_km: list = [
             [1, 37.842762, 55.774558],
@@ -172,7 +176,7 @@ class Distance:
                 nearest_destination.append(each_km)
 
        # nearest_destination -> [origin_latitude, origin_langitude, nearest_latitude, nearest_longitude, distance_between_origin_nearest ]
-        nearest_destination=[origin_address[0],origin_address[1],nearest_destination[0][1],nearest_destination[0][2],distance_km]
+        nearest_destination=[origin_address[0],origin_address[1],nearest_destination[0][2],nearest_destination[0][1],distance_km]
         return nearest_destination # list
 
 # here can be used while you test your code.
