@@ -44,11 +44,6 @@ Further reading [Yandex Geocoder API](https://yandex.com/dev/maps/geocoder/doc/d
 
 - [Hasan Özdemir](https://www.github.com/hasanozdem1r)
 
-  
-## Acknowledgements
-
- - [Mr Dimitriy](his_contact_info_private)
-
 ## Contributing
 
 Contributions are always welcome!
